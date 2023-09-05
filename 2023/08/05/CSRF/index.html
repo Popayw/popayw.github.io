@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CSRF | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="概述  CSRF (Cross-site request forgery，跨站请求伪造)也被称为One Click Attack或者Session Riding，通常缩写为CSRF或者XSRF，是一种对网站的恶意利用。尽管听起来像跨站脚本(XSS)，但它与XSS非常不同，XSS利用站点内的信任用户，而CSRF则通过伪装成受信任用户请求受信任的网站  简单的说，是攻击者通过一些技术手段欺骗用户的浏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSRF">
+<meta property="og:url" content="http://example.com/2023/08/05/CSRF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="概述  CSRF (Cross-site request forgery，跨站请求伪造)也被称为One Click Attack或者Session Riding，通常缩写为CSRF或者XSRF，是一种对网站的恶意利用。尽管听起来像跨站脚本(XSS)，但它与XSS非常不同，XSS利用站点内的信任用户，而CSRF则通过伪装成受信任用户请求受信任的网站  简单的说，是攻击者通过一些技术手段欺骗用户的浏">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/7.png">
+<meta property="article:published_time" content="2023-08-05T13:03:55.000Z">
+<meta property="article:modified_time" content="2023-08-06T01:12:33.553Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="CSRF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/7.png"><link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/115929869?v=4"><link rel="canonical" href="http://example.com/2023/08/05/CSRF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CSRF',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-06 09:12:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script src="/js/fish.load.js"></script><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="preload" as="font" type="font/ttf" href="/font/alifangyuan.ttf" crossorigin="anonymous"><link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"><script src=" https://code.jquery.com/jquery-3.7.0.min.js"></script><script async="" src="/js/vue.min.js"></script><script async="" src="/js/element-ui.js"></script><script async="" data-pjax="" src="/js/scroll.js"></script><script async="" data-pjax="" src="/js/vue-bar.js"> </script><meta name="generator" content="Hexo 6.3.0"></head><body><script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")  
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+document.addEventListener('pjax:send', () => { preloader.initLoading() })
+document.addEventListener('pjax:complete', () => { preloader.endLoading() })</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/115929869?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Glowworm777"><i class="fa-fw fab fa-github"></i><span> github</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://glowworm777.github.io/"><i class="fa-fw fas fa-house-user"></i><span> 主页</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/7.png')"><nav id="nav"><div id="navbar"><span id="blog_name"><a id="site-name" href="/"><div class="title">Petrichor</div><i class="fa-solid fa-house"></i></a><div id="toggle-menu" style="margin:auto;"><a class="site-page" style="display:flex; align-items:center; height:35px;"><i class="fas fa-bars-progress fa-fw"></i>菜单</a></div></span><div id="menus"><div class="nav-button" id="search-button"><a class="site-page social-icon search"><div class="search-button-text"><i class="fas fa-search fa-fw"></i><span>搜索</span></div></a></div><div class="nav-button"><a class="link" target="_blank" rel="noopener" href="https://travellings.cn/go.html"><i class="fas fa-bus"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Glowworm777"><i class="fa-fw fab fa-github"></i><span> github</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://glowworm777.github.io/"><i class="fa-fw fas fa-house-user"></i><span> 主页</span></a></li></ul></div></div></div></div></nav><div id="post-info"><h1 class="post-title">CSRF</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-08-05T13:03:55.000Z" title="Created 2023-08-05 21:03:55">2023-08-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-06T01:12:33.553Z" title="Updated 2023-08-06 09:12:33">2023-08-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CSRF"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div class="maininner" id="post"><article class="post-content" id="article-container"><span id="more"></span>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
+<p> CSRF (Cross-site request forgery，跨站请求伪造)也被称为One Click Attack或者Session Riding，通常缩写为CSRF或者XSRF，是一种对网站的恶意利用。尽管听起来像跨站脚本(XSS)，但它与XSS非常不同，XSS利用站点内的信任用户，而CSRF则通过伪装成受信任用户请求受信任的网站</p>
+</blockquote>
+<p>简单的说，是攻击者通过一些技术手段欺骗用户的浏览器去访问一个自己以前认证过的站点并运行一些操作（如发邮件，发消息，甚至财产操作（如转账和购买商品））。因为浏览器之前认证过，所以被访问的站点会觉得这是真正的用户操作而去运行</p>
+<h1 id="CSRF攻击原理及过程"><a href="#CSRF攻击原理及过程" class="headerlink" title="CSRF攻击原理及过程"></a>CSRF攻击原理及过程</h1><p><img src="/img/CSRF/csrf.jpg" alt=""></p>
+<p>1、Tom登录某银行网站，于是浏览器生成了Tom在该银行的的身份验证信息。</p>
+<p>2、Jerry利用Sns.com服务器将伪造的转账请求包含在帖子中，并把帖子链接发给了Tom。</p>
+<p>3、Tom在银行网站保持登录的情况下浏览帖子</p>
+<p>4、这时Tom就在不知情的情况下将伪造的转账请求连同身份认证信息发送到银行网站。</p>
+<p>5、银行网站看到身份认证信息，认为请求是Tom的合法操作</p>
+<p>之后，银行网站会报据Tom的权限来处理Jerry所发起的恶意请求，这样Jerry就达到了伪造Tom的身份请求银行网站给自己转账的目的</p>
+<p>在此过程中受害者Tom只需要做下面两件事情，攻击者Jerry就能够完成CSRF攻击：</p>
+<ul>
+<li>登录受信任银行网站，并生成身份验证信息；</li>
+<li>在不登出银行网站(清除身份验证信息)的情况下，访问恶意站点Sns.com。</li>
+</ul>
+<p>很多情况下所谓的恶意站点，很有可能是一个存在其他漏洞(如XSS) 的受信任且被很多人访问的站点，这样，普通用户可能在不知不觉中便成为了受害者</p>
+<p><strong>攻击条件：</strong></p>
+<ul>
+<li>登录受信任网站A，并在本地生成Cookie</li>
+<li>在不登出A的情况下，访问危险网站B</li>
+</ul>
+<h1 id="CSRF攻击分类"><a href="#CSRF攻击分类" class="headerlink" title="CSRF攻击分类"></a>CSRF攻击分类</h1><p>CSRF漏洞一般分为站外和站内两种类型。</p>
+<ul>
+<li><p>CSRF站内类型的漏洞在一定程度上是由于程序员滥用<code>$_REQUEST</code>类变量造成的，一些敏感的操作本来是要求用户从表单提交发起POST请求传参给程序，但是由于使用了<code>$_REQUEST</code>等变量，程序也接收GET请求传参，这样就给攻击者使用CSRF攻击创造了条件，一般攻击者只要把预测好的请求参数放在站内一个贴子或者留言的图片链接里，受害者浏览了这样的页面就会被强迫发起请求</p>
+</li>
+<li><p>CSRF站外类型的漏洞其实就是传统意义上的外部提交数据问题，一般程序员会考虑给一些留言评论等的表单加上水印以防止SPAM问题，但是为了用户的体验性，一些操作可能没有做任何限制，所以攻击者可以先预测好请求的参数，在站外的Web页面里编写javascript脚本伪造文件请求或和自动提交的表单来实现GET、POST请求，用户在会话状态下点击链接访问站外的Web页面，客户端就被强迫发起请求</p>
+</li>
+</ul>
+<h2 id="GET类型的CSRF"><a href="#GET类型的CSRF" class="headerlink" title="GET类型的CSRF"></a>GET类型的CSRF</h2><p><strong>仅仅须要一个HTTP请求。就能够构造一次简单的CSRF</strong></p>
+<p>样例：</p>
+<p>银行站点A：它以GET请求来完毕银行转账的操作，如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000 </span><br></pre></td></tr></table></figure>
+<p>危险站点B：它里面有一段HTML的代码例如以下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">http://www.mybank.com/Transfer.php?toBankId</span>=<span class="string">11&amp;money</span>=<span class="string">1000</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>首先，你登录了银行站点A，然后访问危险站点B，噢，这时你会发现你的银行账户少了1000块</p>
+<p>为什么会这样呢？</p>
+<p><strong>原因是银行站点A违反了HTTP规范，使用GET请求更新资源</strong></p>
+</li>
+<li><p>在访问危险站点B的之前。你已经登录了银行站点A，而B中的 一个合法的请求，但这里被不法分子利用</p>
+</li>
+<li><p>所以你的浏览器会带上你的银行站点A的Cookie发出Get请求，去获取资源以GET的方式请求第三方资源（这里的第三方就是指银行站点了）</p>
+</li>
+</ul>
+<p>原本这是：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</span><br></pre></td></tr></table></figure>
+<p>结果银行站点服务器收到请求后，觉得这是一个更新资源操作（转账操作），所以就立马进行转账操作</p>
+<h2 id="POST类型的CSRF"><a href="#POST类型的CSRF" class="headerlink" title="POST类型的CSRF"></a>POST类型的CSRF</h2><p>在CSRF攻击流行之初，曾经有一种错误的观点，认为CSRF攻击只能由GET请求发起。因此很多开发者都认为只要把重要的操作改成只允许POST请求，就能防止CSRF攻击</p>
+<p>这样的错误观点形成的原因主要在于，大多数CSRF攻击发起时，使用的HTML标签都是<code>&lt;image&gt;、&lt;iframe&gt;、&lt;script&gt;</code>等带<code>src</code>属性的标签，这类标签只能够发起一次GET请求，而不能发起POST请求</p>
+<p>而对于很多网站的应用来说，一些重要操作并未严格地区分GET与POST，攻击者可以使用GET来请求表单的提交地址。比如在PHP中，如果使用的是<code>$_REQUEST</code>，而非$_POST获取变量，则会存在这个问题</p>
+<p>对于一个表单来说，用户往往也就可以使用GET方式提交参数。比如以下表单:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot; / register&quot;</span> <span class="attr">id</span>=<span class="string">&quot;register&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">text</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">password</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">submit</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;submit&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>用户可尝试构造一个GET请求</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http: //host/register?username=test&amp;password=passwd</span><br></pre></td></tr></table></figure>
+<p>来提交，若服务器端未对请求方法进行限制，则这个请求会通过</p>
+<p>如果服务器端已经区分了GET与POST，那么攻击者有什么方法呢?对于攻击者来说，若干种方法可以构造出一个POST请求</p>
+<p>最简单的方法，就是在一个页面中构造好一个表单表单，然后使用JavaScript自动提交这个表单。比如，攻击者在<code>www.b.com/test.html</code>中编写如下代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http: / / www . a.com/register&quot;</span> <span class="attr">id</span>=<span class="string">&quot;register&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">text</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">password</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">submit</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;submit&quot;</span>/&gt;</span>&lt;/ form&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> f = <span class="variable language_">document</span>.<span class="property">getElementById</span> ( <span class="string">&quot;register&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">f.<span class="property">inputs</span> [<span class="number">0</span>].<span class="property">value</span> = <span class="string">&quot;test&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">f.<span class="property">inputs</span> [<span class="number">1</span>].<span class="property">value</span> = <span class="string">&quot;passwd&quot;</span> ;</span></span><br><span class="line"><span class="language-javascript">f.<span class="property">submit</span> ();</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>攻击者甚至可以将这个页面隐藏在一个不可见的<code>iframe</code>窗口中，那么整个自动提交表单的过程，对于用户来说也是不可见的</p>
+<h1 id="CSRF漏洞检测"><a href="#CSRF漏洞检测" class="headerlink" title="CSRF漏洞检测"></a>CSRF漏洞检测</h1><p>检测CSRF漏洞是一项比较繁琐的工作，最简单的方法就是抓取一个正常请求的数据包，去掉Refexex字段后再重新提交，如果该提交还有效，那么基本上可以确定存在CSRF漏洞</p>
+<p>随着对CSRF漏洞研究的不断深入，不断涌现出一些专[门针对CSRF漏洞进行检测的工具,如<code>CSRFTester</code>, <code>CSRF Request Builder</code>等</p>
+<p>以<code>CSRFTester</code>工具为例，CSRF漏洞检测工具的测试原理如下：使用<code>CSRFTester</code>进行测试时，首先需要抓取我们在浏览器中访问过的所有链接以及所有的表单等信息，然后通过在<code>CSRFTester</code>中修改相应的表单等信息，重新提交，这相当于一次伪造客户端请求。如果修改后的测试请求成功被网站服务器接受，则说明存在CSRF漏洞，当然此款工具也可以被用来进行CSRF攻击</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CSRF/">CSRF</a></div><div class="post_share"><div class="social-share" data-image="/img/7.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__sayhi" id="author-info__sayhi">晚上好！我是</div><div class="author-info__name">John Doe</div><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/115929869?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="loading-image-dot"></div></div></div></div><div class="banner-button-group"><a class="banner-button" href="/about/"><i class="fas fa-circle-chevron-right"></i><span class="banner-button-te"></span><xt>了解更多</xt></a></div></div><hrl class="line" style="margin-top: 10px"></hrl><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86%E5%8F%8A%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">CSRF攻击原理及过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E6%94%BB%E5%87%BB%E5%88%86%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">CSRF攻击分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GET%E7%B1%BB%E5%9E%8B%E7%9A%84CSRF"><span class="toc-number">3.1.</span> <span class="toc-text">GET类型的CSRF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POST%E7%B1%BB%E5%9E%8B%E7%9A%84CSRF"><span class="toc-number">3.2.</span> <span class="toc-text">POST类型的CSRF</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B"><span class="toc-number">4.</span> <span class="toc-text">CSRF漏洞检测</span></a></li></ol></div></div><hrl class="line"></hrl><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/CSRF/" style="font-size: 1.1em; color: #999">CSRF</a> <a href="/tags/CTF/" style="font-size: 1.1em; color: #999">CTF</a> <a href="/tags/CTFHUB/" style="font-size: 1.18em; color: #999ca1">CTFHUB</a> <a href="/tags/CTFSHOW/" style="font-size: 1.5em; color: #99a9bf">CTFSHOW</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Gadget/" style="font-size: 1.1em; color: #999">Gadget</a> <a href="/tags/Go/" style="font-size: 1.1em; color: #999">Go</a> <a href="/tags/Intranet/" style="font-size: 1.1em; color: #999">Intranet</a> <a href="/tags/Java/" style="font-size: 1.26em; color: #999fa8">Java</a> <a href="/tags/Nodejs/" style="font-size: 1.18em; color: #999ca1">Nodejs</a> <a href="/tags/PHP/" style="font-size: 1.42em; color: #99a6b7">PHP</a> <a href="/tags/Python/" style="font-size: 1.34em; color: #99a3b0">Python</a> <a href="/tags/RCE/" style="font-size: 1.34em; color: #99a3b0">RCE</a> <a href="/tags/SQL/" style="font-size: 1.1em; color: #999">SQL</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 1.18em; color: #999ca1">SQL注入</a> <a href="/tags/SSRF/" style="font-size: 1.1em; color: #999">SSRF</a> <a href="/tags/SSTI/" style="font-size: 1.18em; color: #999ca1">SSTI</a> <a href="/tags/XSS/" style="font-size: 1.1em; color: #999">XSS</a> <a href="/tags/XXE/" style="font-size: 1.26em; color: #999fa8">XXE</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" style="font-size: 1.18em; color: #999ca1">信息搜集</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 1.18em; color: #999ca1">文件上传</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 1.18em; color: #999ca1">文件包含</a></div></div><hrl class="line"></hrl><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">Java安全</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MISC/"><span class="card-category-list-name">MISC</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tools/"><span class="card-category-list-name">Tools</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/WriteUp/"><span class="card-category-list-name">WriteUp</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">web安全</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"><span class="card-category-list-name">编程语言</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><hrl class="line"></hrl><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><span class="card-archive-list-count">22</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">July 2023</span><span class="card-archive-list-count">20</span></a></li></ul></div></div></div></main><footer id="footer"><div id="footer_deal"><a class="deal_link" target="_blank" rel="noopener external nofollow" href="https://sssu.us/" title="个人主页"><i class="fa-solid fa-compass"></i></a><a class="deal_link" target="_blank" rel="noopener external nofollow" href="https://res.abeim.cn/api/qq/?qq=3350915719" title="联系QQ"><i class="fa-brands fa-qq"></i></a><a class="deal_link" href="/authorwechat/" title="联系微信"><i class="fa-brands fa-weixin"></i></a><img class="footer_mini_logo entered loading" title="返回顶部" onclick="btf.scrollToDest(0, 500)" src="/img/avatar.png" data-ll-status="loading"/><a class="deal_link" target="_blank" rel="noopener external nofollow" href="https://github.com/Glowworm777" title="Github"><i class="fa-brands fa-github"></i></a><a class="deal_link" href="/comments/" title="留言"><i class="fa-solid fa-comment"></i></a><a class="deal_link" target="_blank" rel="noopener external nofollow" href="mailto:3350915719@qq.com" title="发送邮件"><i class="fa-solid fa-envelope"></i></a></div><div id="Jay-footer"><div class="footer-group"><h3 class="footer-title"><div class="footer-links"><a class="footer-item" target="_blank" href="null"></a></div></h3></div><div class="footer-group"><h3 class="footer-title"><div class="footer-links"><a class="footer-item" href="null"></a></div></h3></div></div><div id="footer-banner"><div class="footer-banner-links"><div class="footer-banner-left"><div class="footer-banner-left"><div id="footer-banner-tips">别愁深夜雪 ，孤影小窗灯</div></div></div><div class="footer-banner-right"><a class="footer-banner-link" target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" title="Hexo">框架：Typehexo</a><a class="footer-banner-link">|</a><a class="footer-banner-link" href="/archives/49841/" title="theme">主题：Dynasty</a><a class="footer-banner-link">|</a><a class="footer-banner-link" href="/about/" title="about">关于</a><a class="footer-banner-link">|</a><a class="footer-banner-link cc" href="/cc/" title="cc协议"><i class="fab fa-creative-commons"></i><span>协议。</span></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hrl class="line" style="margin-top:15px; border: 2px dashed var(--search-border-color) !important;"></hrl><div id="local-search-results"></div><hrl class="line" style="border: 2px dashed var(--search-border-color) !important;"></hrl></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="totopbutton" onclick="btf.scrollToDest(0,500)"><i class="fas fa-arrow-up"></i><span id="percent">0</span><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></div><div id="console_open_close_btn" onclick="showconsolebtn()"><i class="fas fa-gear fa-spin"></i></div><div id="console-pannel">控制台<div class="console-item"><div class="console-button" onclick="hideaside()"><i class="fas fa-arrows-alt-h"></i><div class="text">侧栏隐显</div></div></div><div class="console-item"><div class="console-button" onclick="toggleTheme()"><i class="fas fa-adjust"></i><div class="text">暗色模式</div></div></div><div class="console-item"><div class="console-button" onclick="hidehometop()"><i class="fas fa-grip-vertical"></i><div class="text">顶部隐显</div></div></div><div class="console-item"><div class="console-button" onclick="toRandomPost()"><i class="fas fa-shuffle"></i><div class="text">随机文章</div></div></div></div><script src="/js/custom.js"></script><script src="/js/random.js"></script></body></html>

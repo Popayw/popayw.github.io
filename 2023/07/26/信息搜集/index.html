@@ -1,0 +1,450 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>信息搜集 | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="信息搜集概述及分类搜集内容 IP地址、公司地址、邮件地址 域名信息、端口信息、敏感信息、主机存活情况 联系电话 网站架构技术 ……  信息搜集分类主动信息搜集需要与目标机器进行直接交互 缺点：容易被目标机器记录操作信息或者屏蔽 比如：nmap、Scapy 被动信息搜集不需要与目标机器进行交互，主要利用第三站点或渠道来进行信息的收集 比如：google、shodan、fofa 敏感目录泄露git泄">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息搜集">
+<meta property="og:url" content="http://example.com/2023/07/26/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="信息搜集概述及分类搜集内容 IP地址、公司地址、邮件地址 域名信息、端口信息、敏感信息、主机存活情况 联系电话 网站架构技术 ……  信息搜集分类主动信息搜集需要与目标机器进行直接交互 缺点：容易被目标机器记录操作信息或者屏蔽 比如：nmap、Scapy 被动信息搜集不需要与目标机器进行交互，主要利用第三站点或渠道来进行信息的收集 比如：google、shodan、fofa 敏感目录泄露git泄">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/11.png">
+<meta property="article:published_time" content="2023-07-26T01:58:35.000Z">
+<meta property="article:modified_time" content="2023-07-29T02:22:23.563Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="信息搜集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/11.png"><link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/115929869?v=4"><link rel="canonical" href="http://example.com/2023/07/26/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '信息搜集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-29 10:22:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script src="/js/fish.load.js"></script><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="preload" as="font" type="font/ttf" href="/font/alifangyuan.ttf" crossorigin="anonymous"><link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"><script src=" https://code.jquery.com/jquery-3.7.0.min.js"></script><script async="" src="/js/vue.min.js"></script><script async="" src="/js/element-ui.js"></script><script async="" data-pjax="" src="/js/scroll.js"></script><script async="" data-pjax="" src="/js/vue-bar.js"> </script><meta name="generator" content="Hexo 6.3.0"></head><body><script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")  
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+document.addEventListener('pjax:send', () => { preloader.initLoading() })
+document.addEventListener('pjax:complete', () => { preloader.endLoading() })</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/115929869?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Glowworm777"><i class="fa-fw fab fa-github"></i><span> github</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://glowworm777.github.io/"><i class="fa-fw fas fa-house-user"></i><span> 主页</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/11.png')"><nav id="nav"><div id="navbar"><span id="blog_name"><a id="site-name" href="/"><div class="title">Petrichor</div><i class="fa-solid fa-house"></i></a><div id="toggle-menu" style="margin:auto;"><a class="site-page" style="display:flex; align-items:center; height:35px;"><i class="fas fa-bars-progress fa-fw"></i>菜单</a></div></span><div id="menus"><div class="nav-button" id="search-button"><a class="site-page social-icon search"><div class="search-button-text"><i class="fas fa-search fa-fw"></i><span>搜索</span></div></a></div><div class="nav-button"><a class="link" target="_blank" rel="noopener" href="https://travellings.cn/go.html"><i class="fas fa-bus"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Glowworm777"><i class="fa-fw fab fa-github"></i><span> github</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://glowworm777.github.io/"><i class="fa-fw fas fa-house-user"></i><span> 主页</span></a></li></ul></div></div></div></div></nav><div id="post-info"><h1 class="post-title">信息搜集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-07-26T01:58:35.000Z" title="Created 2023-07-26 09:58:35">2023-07-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-29T02:22:23.563Z" title="Updated 2023-07-29 10:22:23">2023-07-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="信息搜集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div class="maininner" id="post"><article class="post-content" id="article-container"><span id="more"></span>
+<h1 id="信息搜集概述及分类"><a href="#信息搜集概述及分类" class="headerlink" title="信息搜集概述及分类"></a>信息搜集概述及分类</h1><h2 id="搜集内容"><a href="#搜集内容" class="headerlink" title="搜集内容"></a>搜集内容</h2><ul>
+<li>IP地址、公司地址、邮件地址</li>
+<li>域名信息、端口信息、敏感信息、主机存活情况</li>
+<li>联系电话</li>
+<li>网站架构技术</li>
+<li>……</li>
+</ul>
+<h2 id="信息搜集分类"><a href="#信息搜集分类" class="headerlink" title="信息搜集分类"></a>信息搜集分类</h2><h3 id="主动信息搜集"><a href="#主动信息搜集" class="headerlink" title="主动信息搜集"></a>主动信息搜集</h3><p>需要与目标机器进行直接交互</p>
+<p><strong>缺点：</strong>容易被目标机器记录操作信息或者屏蔽</p>
+<p>比如：nmap、Scapy</p>
+<h3 id="被动信息搜集"><a href="#被动信息搜集" class="headerlink" title="被动信息搜集"></a>被动信息搜集</h3><p>不需要与目标机器进行交互，主要利用第三站点或渠道来进行信息的收集</p>
+<p>比如：google、shodan、fofa</p>
+<h1 id="敏感目录泄露"><a href="#敏感目录泄露" class="headerlink" title="敏感目录泄露"></a>敏感目录泄露</h1><h2 id="git泄露"><a href="#git泄露" class="headerlink" title="git泄露"></a>git泄露</h2><p>git是一个主流的分布式版本控制系统，开发人员在开发过程中经常会遗忘<code>.git</code>文件夹，导致攻击者可以通过<code>.git</code>文件夹中的信息获取开发人员提交过的所有源码，进而导致服务器被攻击。</p>
+<blockquote>
+<p>工具<a target="_blank" rel="noopener" href="https://github.com/denny0223/scrabble">scrabble</a></p>
+<p>使用方法：<code>./scrabble http://www.example.com</code></p>
+<p>工具<a target="_blank" rel="noopener" href="https://github.com/WangYiHang/GitHacker">GitHacker</a></p>
+<p>使用方法：<code>python GitHacker.py http://www.example.com/.git/</code></p>
+</blockquote>
+<h2 id="SVN泄露"><a href="#SVN泄露" class="headerlink" title="SVN泄露"></a>SVN泄露</h2><p>SVN是源代码版本管理软件，造成SVN源代码漏洞的主要原因是管理员操作不规范将SVN隐藏文件夹暴露于外网环境，可以利用<code>.svn/entries</code>或<code>wc.db</code>文件获取服务器源码等信息。</p>
+<blockquote>
+<p>工具<a target="_blank" rel="noopener" href="https://gitcode.net/mirrors/kost/dvcs-ripper?utm_source=csdn_github_accelerator">dvcs-ripper</a></p>
+<p>使用方法：<code>./rip-svn.pl -u http://www.example.com/.svn</code></p>
+</blockquote>
+<h2 id="HG泄露"><a href="#HG泄露" class="headerlink" title="HG泄露"></a>HG泄露</h2><p>在初始化项目时，HG会在当前文件夹创建一个<code>.hg</code>隐藏文件夹，其中包含代码和分支修改记录等信息。</p>
+<blockquote>
+<p>工具<a target="_blank" rel="noopener" href="https://gitcode.net/mirrors/kost/dvcs-ripper?utm_source=csdn_github_accelerator">dvcs-ripper</a></p>
+<p>使用方法：<code>./rip-hg.pl -v -u http://www.example.com/.hg</code></p>
+</blockquote>
+<h2 id="DS-Store-源码泄漏"><a href="#DS-Store-源码泄漏" class="headerlink" title="DS_Store 源码泄漏"></a>DS_Store 源码泄漏</h2><p>在发布代码时，没有删除文件夹中隐藏的<code>.DS_store</code>，被发现后，获取了敏感的文件名等信息。</p>
+<blockquote>
+<p>工具<a target="_blank" rel="noopener" href="https://github.com/lijiejie/ds_store_exp">ds_store_exp</a></p>
+<p>使用方法：<code>python ds_store_exp.py http://www.example.com/.DS_Store</code></p>
+</blockquote>
+<h1 id="敏感备份文件"><a href="#敏感备份文件" class="headerlink" title="敏感备份文件"></a>敏感备份文件</h1><h2 id="gedit备份文件"><a href="#gedit备份文件" class="headerlink" title="gedit备份文件"></a>gedit备份文件</h2><p>在Linux下，，用gedit编辑器保存后，当前目录下会生成后缀为<code>~</code>的文件，其文件内容就是刚编辑的内容，通过浏览器访问这个带有<code>~</code>的文件，便可以的源代码。</p>
+<h2 id="vim备份文件"><a href="#vim备份文件" class="headerlink" title="vim备份文件"></a>vim备份文件</h2><p>vim是目前运用得最多的Linux编辑器，当用户在编辑文件但意外退出时（如通过SSH来连接服务器时，在用vim编辑文件的过程中可能遇到因为网速不够导致的命令行卡死而意外退出的情况），会在当前目录下生成一个备份文件，文件名格式为：<code>.文件名.swp</code>，该文件用来备份缓冲区中的内容即将退出时的文件内容。针对SWP备份文件，可以用<code>vim -r</code>命令恢复文件的内容。</p>
+<h2 id="常规文件"><a href="#常规文件" class="headerlink" title="常规文件"></a>常规文件</h2><ul>
+<li><code>robots.txt</code>：记录一些目录和CMS版本信息</li>
+<li><code>readme.md</code>：记录CMS版本信息，有的甚至有Github地址</li>
+<li><code>www.zip/rar/tar.gz</code>：往往是网站的源码备份</li>
+</ul>
+<h1 id="Shodan搜索引擎使用方法"><a href="#Shodan搜索引擎使用方法" class="headerlink" title="Shodan搜索引擎使用方法"></a>Shodan搜索引擎使用方法</h1><p><a target="_blank" rel="noopener" href="https://www.shodan.io/">https://www.shodan.io/</a></p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>这里就像是用其他搜索引擎一样，在主页的搜索框中输入想要搜索的内容即可，例如下面搜索 “github”：</p>
+<p><img src="/img/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/shodan_01.png" alt=""></p>
+<p>上图的搜索结果包含两个部分，左侧是大量的汇总数据包括：</p>
+<ul>
+<li>TOTAL RESULTS – 搜索结果总数</li>
+<li>TOP COUNTRIES – 排名靠前的国家</li>
+<li>Top Ports – 使用最多的端口</li>
+<li>Top organizations – 使用最多的组织</li>
+<li>Top products – 使用最多的产品名称</li>
+<li>Top operating systems – 使用最多的操作系统</li>
+</ul>
+<p>随后，在中间的主页面我们可以看到包含如下的搜索结果：</p>
+<ul>
+<li>IP 地址</li>
+<li>主机名</li>
+<li>ISP</li>
+<li>该条目的收录时间</li>
+<li>该主机位于的国家</li>
+<li>Banner 信息、</li>
+</ul>
+<p>想要了解每个条目的具体信息，只需要点击每个条目的IP地址来查看详细信息。</p>
+<h2 id="使用搜索过滤"><a href="#使用搜索过滤" class="headerlink" title="使用搜索过滤"></a>使用搜索过滤</h2><p>使用搜索过滤，能更加准确的搜索出我们想要的的内容，常见的过滤命令如下所示：</p>
+<ul>
+<li>hostname：搜索指定的主机或域名，例如 hostname:“google”</li>
+<li>port：搜索指定的端口或服务，例如 port:“22”</li>
+<li>country：搜索指定的国家，例如 country:“CN”</li>
+<li>city：搜索指定的城市，例如 city:“dalian”</li>
+<li>org：搜索指定的组织或公司，例如 org:“google”</li>
+<li>isp：搜索指定的ISP供应商，例如 isp:“China Telecom”</li>
+<li>product：搜索指定的操作系统/软件/平台，例如 product:“Apache httpd”</li>
+<li>version：搜索指定的软件版本，例如 version:“1.6.2”</li>
+<li>geo：搜索指定的地理位置，参数为经纬度，例如 geo:“31.8639, 117.2808”</li>
+<li>before/after：搜索指定收录时间前后的数据，格式为dd-mm-yy，例如 before:“11-11-15”</li>
+<li>net：搜索指定的IP地址或子网，例如 net:“210.45.240.0/24”</li>
+</ul>
+<h1 id="Google搜索引擎使用方法"><a href="#Google搜索引擎使用方法" class="headerlink" title="Google搜索引擎使用方法"></a>Google搜索引擎使用方法</h1><p><a target="_blank" rel="noopener" href="https://www.google.com/">https://www.google.com/</a></p>
+<p>常见的 Google 关键字</p>
+<ul>
+<li>site：指定域名</li>
+<li>inurl：URL中存在关键字页面</li>
+<li>intext：网页内容里面的关键字</li>
+<li>filetype：指定文件类型</li>
+<li>intitle：网页标题中的关键字</li>
+<li>link：返回所有的指定域名链接</li>
+<li>info：查找指定站点信息</li>
+<li>cache：搜索Google里的内容缓存</li>
+<li>-关键字：不希望搜索结果中出现包含该关键字的网页</li>
+</ul>
+<p><strong>组合使用</strong></p>
+<p>举例：</p>
+<ol>
+<li><p>在指定站点寻找上传页面<br><code>site: xx.com inurl: file</code><br><code>site: xx.com inurl: load</code></p>
+</li>
+<li><p>搜索重要文件<br><code>site: xx.com inurl: robots.txt</code></p>
+</li>
+<li>搜索注入点<br><code>inurl: php?id=</code></li>
+<li>搜索敏感信息<br><code>intitle: 管理|登录|后台</code></li>
+<li>查询包含 <code>user.sql</code> 用户数据库信息的页面<br><code>intext: user.sql intitle: index.of</code> (index.of表示网站目录是开放状态)</li>
+</ol>
+<p><strong>总结</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.exploit-db.com/google-hacking-database">https://www.exploit-db.com/google-hacking-database</a></p>
+<h1 id="FOFA搜索引擎使用方法"><a href="#FOFA搜索引擎使用方法" class="headerlink" title="FOFA搜索引擎使用方法"></a>FOFA搜索引擎使用方法</h1><p><a target="_blank" rel="noopener" href="https://fofa.info/">FOFA网络空间测绘系统</a></p>
+<blockquote>
+<p>直接输入查询语句，将从标题，html内容，http头信息，url字段中搜索；</p>
+<p>如果查询表达式有多个与或关系，尽量在外面用（）包含起来；</p>
+<p>新增<code>==</code>完全匹配的符号，可以加快搜索速度，比如查找qq.com所有host，可以是domain==”qq.com”</p>
+</blockquote>
+<h2 id="高级搜索"><a href="#高级搜索" class="headerlink" title="高级搜索"></a>高级搜索</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>逻辑连接符</th>
+<th>具体含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>匹配，=””时，可查询不存在字段或者值为空的情况。</td>
+</tr>
+<tr>
+<td>==</td>
+<td>完全匹配，==””时，可查询存在且值为空的情况。</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>与</td>
+</tr>
+<tr>
+<td>\</td>
+<td>\</td>
+<td></td>
+<td>或者</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不匹配，!=””时，可查询值为空的情况。</td>
+</tr>
+<tr>
+<td>*=</td>
+<td>模糊匹配，使用<em>或者?进行搜索，比如banner</em>=”mys??” (个人版及以上可用)。</td>
+</tr>
+<tr>
+<td>()</td>
+<td>确认查询优先级，括号内容优先级最高。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>例句</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title=”beijing”</td>
+<td>从标题中搜索“北京”</td>
+</tr>
+<tr>
+<td>header=”elastic”</td>
+<td>从http头中搜索“elastic”</td>
+</tr>
+<tr>
+<td>body=”网络空间测绘”</td>
+<td>从html正文中搜索“网络空间测绘”</td>
+</tr>
+<tr>
+<td>fid=”sSXXGNUO2FefBTcCLIT/2Q==”</td>
+<td>查找相同的网站指纹</td>
+</tr>
+<tr>
+<td>domain=”qq.com”</td>
+<td>搜索根域名带有qq.com的网站</td>
+</tr>
+<tr>
+<td>icp=”京ICP证030173号”</td>
+<td>查找备案号为“京ICP证030173号”的网站</td>
+</tr>
+<tr>
+<td>js_name=”js/jquery.js”</td>
+<td>查找网站正文中包含js/jquery.js的资产</td>
+</tr>
+<tr>
+<td>cname=”ap21.inst.siteforce.com”</td>
+<td>查找cname为”ap21.inst.siteforce.com”的网站</td>
+</tr>
+<tr>
+<td>cname_domain=”siteforce.com”</td>
+<td>查找cname为”ap21.inst.siteforce.com”的网站</td>
+</tr>
+<tr>
+<td>cname_domain=”siteforce.com”</td>
+<td>从url中搜索”.gov.cn”</td>
+</tr>
+<tr>
+<td>port=”6379”</td>
+<td>port=”6379”</td>
+</tr>
+<tr>
+<td>ip=”1.1.1.1”</td>
+<td>从ip中搜索包含“1.1.1.1”的网站</td>
+</tr>
+<tr>
+<td>status_code=”402”</td>
+<td>查询服务器状态为“402”的资产</td>
+</tr>
+<tr>
+<td>查询服务器状态为“402”的资产</td>
+<td>查询服务器状态为“402”的资产</td>
+</tr>
+<tr>
+<td>city=”Ürümqi”</td>
+<td>搜索指定城市的资产</td>
+</tr>
+<tr>
+<td>after=”2017” &amp;&amp; before=”2017-10-01”</td>
+<td>时间范围段搜索</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/">信息搜集</a></div><div class="post_share"><div class="social-share" data-image="/img/11.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/08/09/CTFSHOW-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" title="CTFSHOW-信息搜集"><img class="cover" src="/img/7.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-09</div><div class="title">CTFSHOW-信息搜集</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__sayhi" id="author-info__sayhi">晚上好！我是</div><div class="author-info__name">John Doe</div><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/115929869?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="loading-image-dot"></div></div></div></div><div class="banner-button-group"><a class="banner-button" href="/about/"><i class="fas fa-circle-chevron-right"></i><span class="banner-button-te"></span><xt>了解更多</xt></a></div></div><hrl class="line" style="margin-top: 10px"></hrl><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86%E6%A6%82%E8%BF%B0%E5%8F%8A%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">信息搜集概述及分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E9%9B%86%E5%86%85%E5%AE%B9"><span class="toc-number">1.1.</span> <span class="toc-text">搜集内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">信息搜集分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%8A%A8%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">主动信息搜集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%AB%E5%8A%A8%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">被动信息搜集</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E7%9B%AE%E5%BD%95%E6%B3%84%E9%9C%B2"><span class="toc-number">2.</span> <span class="toc-text">敏感目录泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E6%B3%84%E9%9C%B2"><span class="toc-number">2.1.</span> <span class="toc-text">git泄露</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVN%E6%B3%84%E9%9C%B2"><span class="toc-number">2.2.</span> <span class="toc-text">SVN泄露</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HG%E6%B3%84%E9%9C%B2"><span class="toc-number">2.3.</span> <span class="toc-text">HG泄露</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DS-Store-%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text">DS_Store 源码泄漏</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">敏感备份文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gedit%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">gedit备份文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">vim备份文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E6%96%87%E4%BB%B6"><span class="toc-number">3.3.</span> <span class="toc-text">常规文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shodan%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">Shodan搜索引擎使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%90%9C%E7%B4%A2%E8%BF%87%E6%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text">使用搜索过滤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Google%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">Google搜索引擎使用方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FOFA%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">FOFA搜索引擎使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2"><span class="toc-number">6.1.</span> <span class="toc-text">高级搜索</span></a></li></ol></li></ol></div></div><hrl class="line"></hrl><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/CSRF/" style="font-size: 1.1em; color: #999">CSRF</a> <a href="/tags/CTF/" style="font-size: 1.1em; color: #999">CTF</a> <a href="/tags/CTFHUB/" style="font-size: 1.18em; color: #999ca1">CTFHUB</a> <a href="/tags/CTFSHOW/" style="font-size: 1.5em; color: #99a9bf">CTFSHOW</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Gadget/" style="font-size: 1.1em; color: #999">Gadget</a> <a href="/tags/Go/" style="font-size: 1.1em; color: #999">Go</a> <a href="/tags/Intranet/" style="font-size: 1.1em; color: #999">Intranet</a> <a href="/tags/Java/" style="font-size: 1.26em; color: #999fa8">Java</a> <a href="/tags/Nodejs/" style="font-size: 1.18em; color: #999ca1">Nodejs</a> <a href="/tags/PHP/" style="font-size: 1.42em; color: #99a6b7">PHP</a> <a href="/tags/Python/" style="font-size: 1.34em; color: #99a3b0">Python</a> <a href="/tags/RCE/" style="font-size: 1.34em; color: #99a3b0">RCE</a> <a href="/tags/SQL/" style="font-size: 1.1em; color: #999">SQL</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 1.18em; color: #999ca1">SQL注入</a> <a href="/tags/SSRF/" style="font-size: 1.1em; color: #999">SSRF</a> <a href="/tags/SSTI/" style="font-size: 1.18em; color: #999ca1">SSTI</a> <a href="/tags/XSS/" style="font-size: 1.1em; color: #999">XSS</a> <a href="/tags/XXE/" style="font-size: 1.26em; color: #999fa8">XXE</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" style="font-size: 1.18em; color: #999ca1">信息搜集</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 1.18em; color: #999ca1">文件上传</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 1.18em; color: #999ca1">文件包含</a></div></div><hrl class="line"></hrl><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">Java安全</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MISC/"><span class="card-category-list-name">MISC</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tools/"><span class="card-category-list-name">Tools</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/WriteUp/"><span class="card-category-list-name">WriteUp</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">web安全</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"><span class="card-category-list-name">编程语言</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><hrl class="line"></hrl><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><span class="card-archive-list-count">22</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">July 2023</span><span class="card-archive-list-count">20</span></a></li></ul></div></div></div></main><footer id="footer"><div id="footer_deal"><a class="deal_link" target="_blank" rel="noopener external nofollow" href="https://sssu.us/" title="个人主页"><i class="fa-solid fa-compass"></i></a><a class="deal_link" target="_blank" rel="noopener external nofollow" href="https://res.abeim.cn/api/qq/?qq=3350915719" title="联系QQ"><i class="fa-brands fa-qq"></i></a><a class="deal_link" href="/authorwechat/" title="联系微信"><i class="fa-brands fa-weixin"></i></a><img class="footer_mini_logo entered loading" title="返回顶部" onclick="btf.scrollToDest(0, 500)" src="/img/avatar.png" data-ll-status="loading"/><a class="deal_link" target="_blank" rel="noopener external nofollow" href="https://github.com/Glowworm777" title="Github"><i class="fa-brands fa-github"></i></a><a class="deal_link" href="/comments/" title="留言"><i class="fa-solid fa-comment"></i></a><a class="deal_link" target="_blank" rel="noopener external nofollow" href="mailto:3350915719@qq.com" title="发送邮件"><i class="fa-solid fa-envelope"></i></a></div><div id="Jay-footer"><div class="footer-group"><h3 class="footer-title"><div class="footer-links"><a class="footer-item" target="_blank" href="null"></a></div></h3></div><div class="footer-group"><h3 class="footer-title"><div class="footer-links"><a class="footer-item" href="null"></a></div></h3></div></div><div id="footer-banner"><div class="footer-banner-links"><div class="footer-banner-left"><div class="footer-banner-left"><div id="footer-banner-tips">别愁深夜雪 ，孤影小窗灯</div></div></div><div class="footer-banner-right"><a class="footer-banner-link" target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" title="Hexo">框架：Typehexo</a><a class="footer-banner-link">|</a><a class="footer-banner-link" href="/archives/49841/" title="theme">主题：Dynasty</a><a class="footer-banner-link">|</a><a class="footer-banner-link" href="/about/" title="about">关于</a><a class="footer-banner-link">|</a><a class="footer-banner-link cc" href="/cc/" title="cc协议"><i class="fab fa-creative-commons"></i><span>协议。</span></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hrl class="line" style="margin-top:15px; border: 2px dashed var(--search-border-color) !important;"></hrl><div id="local-search-results"></div><hrl class="line" style="border: 2px dashed var(--search-border-color) !important;"></hrl></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="totopbutton" onclick="btf.scrollToDest(0,500)"><i class="fas fa-arrow-up"></i><span id="percent">0</span><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></div><div id="console_open_close_btn" onclick="showconsolebtn()"><i class="fas fa-gear fa-spin"></i></div><div id="console-pannel">控制台<div class="console-item"><div class="console-button" onclick="hideaside()"><i class="fas fa-arrows-alt-h"></i><div class="text">侧栏隐显</div></div></div><div class="console-item"><div class="console-button" onclick="toggleTheme()"><i class="fas fa-adjust"></i><div class="text">暗色模式</div></div></div><div class="console-item"><div class="console-button" onclick="hidehometop()"><i class="fas fa-grip-vertical"></i><div class="text">顶部隐显</div></div></div><div class="console-item"><div class="console-button" onclick="toRandomPost()"><i class="fas fa-shuffle"></i><div class="text">随机文章</div></div></div></div><script src="/js/custom.js"></script><script src="/js/random.js"></script></body></html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>文件上传 | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="WebShell 与 WebShell 管理工具什么叫做WebShell WebShell , 简称网页后门。简单来说它是运行在Web应用之上的远程控制程序 webShell其实就是一张网页，由PHP、JSP、ASP、ASP.NET等这类web应用程序语言开发，但webShell并不具备常见网页的功能，例如登录、注册、信息展示等功能，一般会具备文件管理、端口扫描、提权、获取系统信息等功能  常见">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传">
+<meta property="og:url" content="http://example.com/2023/07/26/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="WebShell 与 WebShell 管理工具什么叫做WebShell WebShell , 简称网页后门。简单来说它是运行在Web应用之上的远程控制程序 webShell其实就是一张网页，由PHP、JSP、ASP、ASP.NET等这类web应用程序语言开发，但webShell并不具备常见网页的功能，例如登录、注册、信息展示等功能，一般会具备文件管理、端口扫描、提权、获取系统信息等功能  常见">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/8.png">
+<meta property="article:published_time" content="2023-07-26T01:58:13.000Z">
+<meta property="article:modified_time" content="2023-08-05T12:36:55.359Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="文件上传">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/8.png"><link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/115929869?v=4"><link rel="canonical" href="http://example.com/2023/07/26/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '文件上传',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-05 20:36:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script src="/js/fish.load.js"></script><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><link rel="preload" as="font" type="font/ttf" href="/font/alifangyuan.ttf" crossorigin="anonymous"><link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"><script src=" https://code.jquery.com/jquery-3.7.0.min.js"></script><script async="" src="/js/vue.min.js"></script><script async="" src="/js/element-ui.js"></script><script async="" data-pjax="" src="/js/scroll.js"></script><script async="" data-pjax="" src="/js/vue-bar.js"> </script><meta name="generator" content="Hexo 6.3.0"></head><body><script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")  
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+document.addEventListener('pjax:send', () => { preloader.initLoading() })
+document.addEventListener('pjax:complete', () => { preloader.endLoading() })</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/115929869?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Glowworm777"><i class="fa-fw fab fa-github"></i><span> github</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://glowworm777.github.io/"><i class="fa-fw fas fa-house-user"></i><span> 主页</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/8.png')"><nav id="nav"><div id="navbar"><span id="blog_name"><a id="site-name" href="/"><div class="title">Petrichor</div><i class="fa-solid fa-house"></i></a><div id="toggle-menu" style="margin:auto;"><a class="site-page" style="display:flex; align-items:center; height:35px;"><i class="fas fa-bars-progress fa-fw"></i>菜单</a></div></span><div id="menus"><div class="nav-button" id="search-button"><a class="site-page social-icon search"><div class="search-button-text"><i class="fas fa-search fa-fw"></i><span>搜索</span></div></a></div><div class="nav-button"><a class="link" target="_blank" rel="noopener" href="https://travellings.cn/go.html"><i class="fas fa-bus"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 本站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Glowworm777"><i class="fa-fw fab fa-github"></i><span> github</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://glowworm777.github.io/"><i class="fa-fw fas fa-house-user"></i><span> 主页</span></a></li></ul></div></div></div></div></nav><div id="post-info"><h1 class="post-title">文件上传</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-07-26T01:58:13.000Z" title="Created 2023-07-26 09:58:13">2023-07-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-05T12:36:55.359Z" title="Updated 2023-08-05 20:36:55">2023-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="文件上传"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div class="maininner" id="post"><article class="post-content" id="article-container"><span id="more"></span>
+<h1 id="WebShell-与-WebShell-管理工具"><a href="#WebShell-与-WebShell-管理工具" class="headerlink" title="WebShell 与 WebShell 管理工具"></a>WebShell 与 WebShell 管理工具</h1><h2 id="什么叫做WebShell"><a href="#什么叫做WebShell" class="headerlink" title="什么叫做WebShell"></a>什么叫做WebShell</h2><ul>
+<li>WebShell , 简称网页后门。简单来说它是运行在Web应用之上的远程控制程序</li>
+<li>webShell其实就是一张网页，由PHP、JSP、ASP、ASP.NET等这类web应用程序语言开发，但webShell并不具备常见网页的功能，例如登录、注册、信息展示等功能，一般会具备文件管理、端口扫描、提权、获取系统信息等功能</li>
+</ul>
+<p><strong>常见的WebShell有哪些？</strong></p>
+<ul>
+<li>大马、小马、各种马…等</li>
+<li>拥有较完整功能的webshell，我们一般称为<code>大马</code>。</li>
+<li>功能简易的webshell称为<code>小马</code>。</li>
+<li>除此之外还存在<code>一句话木马、菜刀马、脱库马</code>等等的名词，是对于webShell功能或者特性的简称</li>
+</ul>
+<p><strong>一句话木马特点</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">代码短，只有一行代码。</span><br><span class="line">场景多，可以单独生成文件，也可以插入到图片中。</span><br><span class="line">安全性高，隐匿性强，可变形免杀</span><br></pre></td></tr></table></figure>
+<p><strong>小马特点</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">能放文件的网站我们可以在木马中添加文件上传功能</span><br><span class="line">体积小，功能少</span><br><span class="line">只有文件上传功能</span><br></pre></td></tr></table></figure>
+<p><strong>大马特点</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">体积大，功能全。能够管理数据库、文件管理、</span><br><span class="line">对站点进行快速的信息收集，甚至能够提权。</span><br></pre></td></tr></table></figure>
+<h2 id="一句话木马解读"><a href="#一句话木马解读" class="headerlink" title="一句话木马解读"></a>一句话木马解读</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[x]); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>$_POST[x]</code>  获取 POST请求参数中X的，例如POST请求中传递<code>x=phpinfo();</code>，那么<code>$_POST[x]</code>就等同于<code>phpinfo();</code></li>
+<li><code>eval()</code> 将字符串当做PHP代码去执行，例如<code>eval(&#39;phpinfo();&#39;)</code>，其中<code>phpinfo();</code>会被当做PHP代码去执行。</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[x]); <span class="meta">?&gt;</span>   实际上的传递过程是这样的</span><br><span class="line">			↓</span><br><span class="line">			↓			</span><br><span class="line">			↓</span><br><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="string">&#x27;phpinfo();&#x27;</span>); <span class="meta">?&gt;</span> 实际的语句是这样的 			</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们通过该<code>webshell</code>，传递<code>任意PHP代码</code>，让其去执行，从而达到<code>任意代码执行</code></li>
+<li>错误控制运算符，当将 <code>@</code>放置在一个PHP表达式之前，该表达式可能产生的任何错误信息都被 <code>忽略</code>掉</li>
+</ul>
+<h2 id="WebShell-管理工具"><a href="#WebShell-管理工具" class="headerlink" title="WebShell 管理工具"></a>WebShell 管理工具</h2><p><strong>常用 WebShell 管理工具</strong></p>
+<ul>
+<li>中国菜地</li>
+<li>中国蚁剑</li>
+<li>冰蝎</li>
+<li>哥斯拉</li>
+<li>…</li>
+</ul>
+<p><strong>蚁剑</strong></p>
+<p><code>weevely</code> 命令行工具，kali自带，可以自己生成一句话木马</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">weevely 目标url 密码</span><br></pre></td></tr></table></figure>
+<p><strong>冰蝎</strong></p>
+<p>动态二进制加密网站管理客户端，自带多个一句话木马</p>
+<p><strong>哥斯拉</strong></p>
+<p>需要Java环境，需要自己生成一句话木马，加密流量，可绕过多种waf和静态拦截等</p>
+<p>密码密钥默认，有效载荷就是需要生成什么环境的木马，有加密方式，可用base64，异或等</p>
+<p>工具在连接时可以添加cookie值以完成相关用户校验</p>
+<h2 id="图片马"><a href="#图片马" class="headerlink" title="图片马"></a>图片马</h2><blockquote>
+<ol>
+<li>在路径下准备好一句话木马.php和一张图片 .png (或者 .jpg )</li>
+<li>输入系统指令： <code>copy 一张图片.png/b+一句话木马.php/a 生成图片名称.png</code></li>
+<li>这样图片木马就合成好了</li>
+</ol>
+</blockquote>
+<h1 id="文件上传之注入流程"><a href="#文件上传之注入流程" class="headerlink" title="文件上传之注入流程"></a>文件上传之注入流程</h1><ul>
+<li>找到上传的功能，没有的话可以通过数据库比如redis未授权和持久化机制KV写入木马，MySQL的读写机制写入木马</li>
+<li>自动找到网站中文件上传的点：<a target="_blank" rel="noopener" href="https://github.com/almandin/fuxploider">https://github.com/almandin/fuxploider</a></li>
+<li>尝试绕过校验，上传文件</li>
+<li>获得文件位置</li>
+<li>蚁剑连接，管理文件</li>
+</ul>
+<h1 id="文件上传漏洞绕过"><a href="#文件上传漏洞绕过" class="headerlink" title="文件上传漏洞绕过"></a>文件上传漏洞绕过</h1><h2 id="客服端绕过"><a href="#客服端绕过" class="headerlink" title="客服端绕过"></a>客服端绕过</h2><p><strong>（1）客户端校验:</strong></p>
+<p>一般都是在网页上写一段 javascript 脚本，校验上传文件的后缀名，有白名单形式也有黑名单形式。判断方式：在浏览加载文件，但还未点击上传按钮时便弹出对话框，内容如：只允许上传<code>.jpg/.jpeg/.png</code>后缀名的文件，而此时并没有发送数据包。</p>
+<p><strong>（2）绕过方法:</strong></p>
+<p>1.通过火狐插件 NOscript 插件或者禁用 IE 中 JS 脚本；</p>
+<p>2.通过 firbug 插件元素审核修改代码（如删除 <code>onsubmit=&quot;return checkFile()&quot;</code> 事件）；</p>
+<p>3.通过 firbug 元素审核 javascirpt 脚本中添加上传文件类型；</p>
+<p>4.通过利用 burp 抓包改包，先上传一个 gif 类型的木马，然后通过 burp 将其改为<code>asp/php/jsp</code> 后缀名即可 注意：这里修改文件名字后，请求头中的 <code>Content-Length</code> 的值也要改。</p>
+<h2 id="服务端绕过"><a href="#服务端绕过" class="headerlink" title="服务端绕过"></a>服务端绕过</h2><p><strong>（1）黑名单扩展名绕过</strong></p>
+<p>黑名单检测：一般有个专门的 blacklist 文件，里面会包含常见的危险脚本文件。</p>
+<p>绕过方法：</p>
+<ul>
+<li>找黑名单扩展名的漏网之鱼 - 比如 iis6.0 中的 asa 和 cer </li>
+<li>可能存在大小写绕过漏洞 - 比如 aSp(iis6.0 中可以）和 pHp（只能在 小于 php5.3.39 中的 linux 中）之中</li>
+<li>能被web容器解析的文件其他扩展名列表：</li>
+</ul>
+<blockquote>
+<p>jsp, jspx ,jspf</p>
+<p>asp asa cer cdx,htr,xml,html</p>
+<p>aspx,ashx,asmx,asax,ascx</p>
+</blockquote>
+<p><strong>（2）黑名单特殊后缀名绕过（利用难度高）</strong></p>
+<p>将Burpsuite截获的数据包中<code>backlion.php</code>名字改为 <code>baclion.php4(php1,php2,php3,php4,php5)</code>, 前提条件是 <code>http.conf</code> 中设置 <code>AddType application/x-httpd-php .php1(php 的版本小于等于 5.3.29 以下)</code></p>
+<p><strong>（3）单双重后缀名绕过</strong></p>
+<p>上传时将 Burpsuite 截的数据包中文件名<code>backlion.php（backlion.asa)</code>改 为 <code>backlion.pphphph(backlion.asasaa)</code>，那么过滤了第一个”php”字符串”后， 开头的’p’和结尾的’hp’就组合又形成了 php</p>
+<p><strong>（4）服务端 MIME 文件类型(Content-Type)绕过</strong></p>
+<p>MIME 的作用：</p>
+<p>使客户端软件，区分不同种类的数据，例如web浏览器就是通过 MIME 类 型来判断文件是GIF图片，还是可打印的 PostScript 文件。web服务器使用 MIME 来说明发送数据的种类，web客户端使用 MIME 来说明希望接收到的数据种类，它是服务器用来判断浏览器传递文件格式的重要标记项</p>
+<p>常用的文件上传类型的 MIME 表：</p>
+<blockquote>
+<p> text/plain（纯文本） text/html（HTML 文档） text/javascript（js 代码） application/xhtml+xml（XHTML 文档） image/gif（GIF 图像） image/jpeg（JPEG 图像） image/png（PNG 图像） video/mpeg（MPEG 劢画） application/octet-stream（二迚制数据） application/pdf（PDF 文档） application/(编程语言) 该种语言的代码 application/msword（Microsoft Word 文件） message/rfc822（RFC 822 形式） multipart/alternative（HTML 邮件的 HTML 形式和纯文本形式，相同内容使 用不同形式表示） application/x-www-form-urlencoded（POST 方法提交的表单）multipart/form-data（POST 提交时伴随文件上传的表单）</p>
+</blockquote>
+<p>绕过方法：上传对文件类型做了限制，可通过 burpsuit 将其他类文件类型 修改为如：<code>Content-Type：image/gif</code> 和 <code>image/jpeg</code> 等运行的文件类型</p>
+<p><strong>等价扩展名绕过</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>文件拓展名</th>
+<th>等价拓展名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.php</td>
+<td>.php2, .php3, .php4, .php5, .phps, .phtml</td>
+</tr>
+<tr>
+<td>.asp</td>
+<td>.aspx, .asa, .cer, .cdx</td>
+</tr>
+<tr>
+<td>.asp</td>
+<td>.aspq, .asmx, .ascx, ashx, .asax,</td>
+</tr>
+<tr>
+<td>.jsp</td>
+<td>.jspx, .jsw, .jspf, .jspa, .jhtml</td>
+</tr>
+<tr>
+<td>.html</td>
+<td>.htm</td>
+</tr>
+<tr>
+<td>.zip</td>
+<td>.jar, .war, .ear</td>
+</tr>
+<tr>
+<td>.rar</td>
+<td>.cbr</td>
+</tr>
+<tr>
+<td>.png</td>
+<td>.apng</td>
+</tr>
+<tr>
+<td>.jpeg</td>
+<td>.jpg, .jpe</td>
+</tr>
+<tr>
+<td>.gif</td>
+<td>.giff, .gfa</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="白名单绕过"><a href="#白名单绕过" class="headerlink" title="白名单绕过"></a>白名单绕过</h2><p><strong>（1）配合web容器的解析漏洞：</strong></p>
+<p>IIS中的目录解析漏洞和分号解析漏洞 ：</p>
+<p>将一句话木马的文件名<code>backlion.php</code>，改成 <code>backlion.php.abc</code>(奇怪的不被解析的后缀名都行)。首先， 服务器验证文件扩展名的时候，验证的是<code>.abc</code>，只要该扩展名符合服务器端黑白名单规则，即可上传</p>
+<p>nginx 空字节漏洞 <code>xxx.jpg%00.php</code> 这样的文件名会被解析为php代码运行。</p>
+<p>apache 的解析漏洞，上传如 <code>a.php.rar a.php.gif</code> 类型的文件名，可以避免 对于php文件的过滤机制，但是由于 apache 在解析文件名的时候是从右向左读，如果遇到不能识别的扩展名则跳过，rar 等扩展名是 apache 不能识别的， 因此就会直接将类型识别为 php，从而达到了注入php代码的目的</p>
+<p><strong>（2）%00 截断上传绕过</strong></p>
+<p>通过抓包截断将 <strong>backlion.asp.jpg</strong> 后面的一个<strong>.</strong>换成<strong>%00</strong> 在上传的时候即 <strong>backlion.asp%00.jpg</strong>，当文件系统读到<strong>%00</strong> 时，会认为文件已经结束，从而将 <strong>backlion.asp.jpg</strong> 的内容写入到 <strong>backlion.asp</strong> 中，从而达到攻击的目的。<strong>%00</strong> 不是针对所有基于白名单的后缀名检查都能绕过，代码的实现过程中必须存在截 断上传漏洞，上传格式如下：<strong>bk.asp%00.jpg</strong></p>
+<p><strong>（3）文件头内容检测绕过</strong></p>
+<p>文件头简介</p>
+<p>不同的图片文件都有不同文件头，如： PNG：文件头标识 (8 bytes) 89 50 4E 47 0D 0A 1A 0A JPEG： 文件头标识 (2 bytes): 0xff, 0xd8 (SOI) (JPEG 文件标识) GIF：文件头标识 (6 bytes) 47 49 46 38 39(37) 61 上传文件的时候会检查上传文件是否合法，如图片文件是否文件头含有 gif89, 这里可以通过一句话图片木马生成工具 edjpgcom 戒者通过编辑器在木马内容基础上再加了一些文件信息，有点像下面的结构:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GIF89a <span class="meta">&lt;?php</span> <span class="title function_ invoke__">phpinfo</span>(); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="htaccess绕过"><a href="#htaccess绕过" class="headerlink" title=".htaccess绕过"></a>.htaccess绕过</h2><p>Hypertext Access(超文本入口)</p>
+<p><code>.htaccess</code> 文件是 Apache 服务器中的一个配置文件，它负责相关目录下的网页配置</p>
+<p>通过 .htaccess 文件，可以实现：网页 301 重定向、自定义404 错误页面、<strong>改变文件扩展名</strong>、允许/阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档等功能,网页伪静态（原来是参数请求的动态形式改为html的伪静态形式）就是用这个实现的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch <span class="string">&quot;a.jpg&quot;</span>&gt;</span><br><span class="line">SetHandler application/x-httpd-php   <span class="comment">//MIME类型</span></span><br><span class="line">&lt;/FilesMatch&gt;     <span class="comment">//将a.jpg当作php文件处理</span></span><br></pre></td></tr></table></figure>
+<p>把.htaccess上传上去，再上传就可成功</p>
+<ul>
+<li><p>大小写绕过</p>
+<p> <code>shell.PHP</code></p>
+</li>
+<li><p>空格绕过</p>
+<p>windows会自动去掉后缀中的空格，低版本php，抓包改包后缀最后加空格。</p>
+</li>
+<li><p>点绕过</p>
+<p>windows会自动去掉后缀中的点如1.php.会解析为1.php，我们可以抓包后加在后缀中加点上传</p>
+</li>
+<li><p>::$DATA绕过</p>
+<p>抓包，在filename后添加::$DATA，与上述原理一样</p>
+</li>
+<li><p>点空格点绕过</p>
+<p>抓包，在filename后添加. .</p>
+</li>
+<li><p>双写绕过</p>
+<p>用于黑名单替换文件名为空，shell.pphphp变为shell.php</p>
+</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传</a></div><div class="post_share"><div class="social-share" data-image="/img/8.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/08/15/CTFSHOW-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" title="CTFSHOW-文件上传"><img class="cover" src="/img/6.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-15</div><div class="title">CTFSHOW-文件上传</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__sayhi" id="author-info__sayhi">晚上好！我是</div><div class="author-info__name">John Doe</div><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/115929869?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="loading-image-dot"></div></div></div></div><div class="banner-button-group"><a class="banner-button" href="/about/"><i class="fas fa-circle-chevron-right"></i><span class="banner-button-te"></span><xt>了解更多</xt></a></div></div><hrl class="line" style="margin-top: 10px"></hrl><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebShell-%E4%B8%8E-WebShell-%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">WebShell 与 WebShell 管理工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%8F%AB%E5%81%9AWebShell"><span class="toc-number">1.1.</span> <span class="toc-text">什么叫做WebShell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.2.</span> <span class="toc-text">一句话木马解读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebShell-%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">1.3.</span> <span class="toc-text">WebShell 管理工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E9%A9%AC"><span class="toc-number">1.4.</span> <span class="toc-text">图片马</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B9%8B%E6%B3%A8%E5%85%A5%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">文件上传之注入流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87"><span class="toc-number">3.</span> <span class="toc-text">文件上传漏洞绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%9C%8D%E7%AB%AF%E7%BB%95%E8%BF%87"><span class="toc-number">3.1.</span> <span class="toc-text">客服端绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BB%95%E8%BF%87"><span class="toc-number">3.2.</span> <span class="toc-text">服务端绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BD%E5%90%8D%E5%8D%95%E7%BB%95%E8%BF%87"><span class="toc-number">3.3.</span> <span class="toc-text">白名单绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#htaccess%E7%BB%95%E8%BF%87"><span class="toc-number">3.4.</span> <span class="toc-text">.htaccess绕过</span></a></li></ol></li></ol></div></div><hrl class="line"></hrl><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/CSRF/" style="font-size: 1.1em; color: #999">CSRF</a> <a href="/tags/CTF/" style="font-size: 1.1em; color: #999">CTF</a> <a href="/tags/CTFHUB/" style="font-size: 1.18em; color: #999ca1">CTFHUB</a> <a href="/tags/CTFSHOW/" style="font-size: 1.5em; color: #99a9bf">CTFSHOW</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Gadget/" style="font-size: 1.1em; color: #999">Gadget</a> <a href="/tags/Go/" style="font-size: 1.1em; color: #999">Go</a> <a href="/tags/Intranet/" style="font-size: 1.1em; color: #999">Intranet</a> <a href="/tags/Java/" style="font-size: 1.26em; color: #999fa8">Java</a> <a href="/tags/Nodejs/" style="font-size: 1.18em; color: #999ca1">Nodejs</a> <a href="/tags/PHP/" style="font-size: 1.42em; color: #99a6b7">PHP</a> <a href="/tags/Python/" style="font-size: 1.34em; color: #99a3b0">Python</a> <a href="/tags/RCE/" style="font-size: 1.34em; color: #99a3b0">RCE</a> <a href="/tags/SQL/" style="font-size: 1.1em; color: #999">SQL</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 1.18em; color: #999ca1">SQL注入</a> <a href="/tags/SSRF/" style="font-size: 1.1em; color: #999">SSRF</a> <a href="/tags/SSTI/" style="font-size: 1.18em; color: #999ca1">SSTI</a> <a href="/tags/XSS/" style="font-size: 1.1em; color: #999">XSS</a> <a href="/tags/XXE/" style="font-size: 1.26em; color: #999fa8">XXE</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" style="font-size: 1.18em; color: #999ca1">信息搜集</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 1.18em; color: #999ca1">文件上传</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 1.18em; color: #999ca1">文件包含</a></div></div><hrl class="line"></hrl><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">Java安全</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MISC/"><span class="card-category-list-name">MISC</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tools/"><span class="card-category-list-name">Tools</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/WriteUp/"><span class="card-category-list-name">WriteUp</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/"><span class="card-category-list-name">web安全</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"><span class="card-category-list-name">编程语言</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><hrl class="line"></hrl><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><span class="card-archive-list-count">22</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">July 2023</span><span class="card-archive-list-count">20</span></a></li></ul></div></div></div></main><footer id="footer"><div id="footer_deal"><a class="deal_link" target="_blank" rel="noopener external nofollow" href="https://sssu.us/" title="个人主页"><i class="fa-solid fa-compass"></i></a><a class="deal_link" target="_blank" rel="noopener external nofollow" href="https://res.abeim.cn/api/qq/?qq=3350915719" title="联系QQ"><i class="fa-brands fa-qq"></i></a><a class="deal_link" href="/authorwechat/" title="联系微信"><i class="fa-brands fa-weixin"></i></a><img class="footer_mini_logo entered loading" title="返回顶部" onclick="btf.scrollToDest(0, 500)" src="/img/avatar.png" data-ll-status="loading"/><a class="deal_link" target="_blank" rel="noopener external nofollow" href="https://github.com/Glowworm777" title="Github"><i class="fa-brands fa-github"></i></a><a class="deal_link" href="/comments/" title="留言"><i class="fa-solid fa-comment"></i></a><a class="deal_link" target="_blank" rel="noopener external nofollow" href="mailto:3350915719@qq.com" title="发送邮件"><i class="fa-solid fa-envelope"></i></a></div><div id="Jay-footer"><div class="footer-group"><h3 class="footer-title"><div class="footer-links"><a class="footer-item" target="_blank" href="null"></a></div></h3></div><div class="footer-group"><h3 class="footer-title"><div class="footer-links"><a class="footer-item" href="null"></a></div></h3></div></div><div id="footer-banner"><div class="footer-banner-links"><div class="footer-banner-left"><div class="footer-banner-left"><div id="footer-banner-tips">别愁深夜雪 ，孤影小窗灯</div></div></div><div class="footer-banner-right"><a class="footer-banner-link" target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" title="Hexo">框架：Typehexo</a><a class="footer-banner-link">|</a><a class="footer-banner-link" href="/archives/49841/" title="theme">主题：Dynasty</a><a class="footer-banner-link">|</a><a class="footer-banner-link" href="/about/" title="about">关于</a><a class="footer-banner-link">|</a><a class="footer-banner-link cc" href="/cc/" title="cc协议"><i class="fab fa-creative-commons"></i><span>协议。</span></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hrl class="line" style="margin-top:15px; border: 2px dashed var(--search-border-color) !important;"></hrl><div id="local-search-results"></div><hrl class="line" style="border: 2px dashed var(--search-border-color) !important;"></hrl></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="totopbutton" onclick="btf.scrollToDest(0,500)"><i class="fas fa-arrow-up"></i><span id="percent">0</span><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></div><div id="console_open_close_btn" onclick="showconsolebtn()"><i class="fas fa-gear fa-spin"></i></div><div id="console-pannel">控制台<div class="console-item"><div class="console-button" onclick="hideaside()"><i class="fas fa-arrows-alt-h"></i><div class="text">侧栏隐显</div></div></div><div class="console-item"><div class="console-button" onclick="toggleTheme()"><i class="fas fa-adjust"></i><div class="text">暗色模式</div></div></div><div class="console-item"><div class="console-button" onclick="hidehometop()"><i class="fas fa-grip-vertical"></i><div class="text">顶部隐显</div></div></div><div class="console-item"><div class="console-button" onclick="toRandomPost()"><i class="fas fa-shuffle"></i><div class="text">随机文章</div></div></div></div><script src="/js/custom.js"></script><script src="/js/random.js"></script></body></html>
